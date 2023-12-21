@@ -1,8 +1,6 @@
 package com.wgu.d288.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -32,39 +30,29 @@ public class Customer {
     /*
     First Name
     @String
-    mandatory field
      */
-    @NotBlank(message="First Name field can not be blank")
-    @NonNull
     @Column(name="customer_first_name")
     private String firstName;
 
     /*
     Last Name
     @String
-    mandatory field
      */
-    @NotBlank(message="Last Name field can not be blank")
     @Column(name="customer_last_name")
     private String lastName;
 
     /*
     Address
     @String
-    mandatory field
      */
-    @NotBlank(message="Address Field can not be balnk")
     @Column(name="address")
     private String address;
 
     /*
     Postal code
     @String
-    madatory field
     This has to be a string to handle international postal codes
      */
-    @NotBlank(message="The Postal Code field can not be blank")
-    @Size(min=5,max=10, message="Postal code must be between 5 and 10 characters")
     @Column(name="postal_code")
     private String postal_code;
 

@@ -1,2 +1,5 @@
-package com.wgu.d288.entities;public class StatusType {
+package com.wgu.d288.entities;
+
+public enum StatusType {
+    pending, ordered, cancelled
 }
