@@ -74,6 +74,7 @@ public class Division {
     @OneToMany(mappedBy = "division", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Customer> customers;
 
+
     public void setCountry(Country country){
         this.country = country;
         this.countryID = (country != null) ? country.getId() : null ;

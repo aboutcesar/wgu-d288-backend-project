@@ -6,13 +6,16 @@ import com.wgu.d288.entities.Cart;
 import com.wgu.d288.entities.CartItem;
 import com.wgu.d288.entities.Customer;
 import com.wgu.d288.entities.StatusType;
+import com.wgu.d288.services.Purchase;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 import java.util.UUID;
 
+@Service
 public class CheckoutSrvcImpl implements CheckoutSrvc{
 
     @Autowired
@@ -28,7 +31,7 @@ public class CheckoutSrvcImpl implements CheckoutSrvc{
         // purchase object
         Cart cart = purchase.getCart();
         Customer customer = purchase.getCustomer();
-        Set<CartItem> cartItms = purchase.getCartItems();
+        Set<CartItem> cartItms = purchase.getCartItem();
 
         // generate a unique order number tracking number
         String orderTrackingNbr = UUID.randomUUID().toString();
@@ -39,7 +42,7 @@ public class CheckoutSrvcImpl implements CheckoutSrvc{
         // loop through all the cart items and add them to the cart obj
         cartItms.forEach(cartItem -> {
             cart.add(cartItem);
-            cartItem.setCart(cart);
+            //cartItem.setCart(cart);
         });
 
         // if we have gotten this far then we need to save the data to the db

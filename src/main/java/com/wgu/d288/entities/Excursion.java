@@ -21,8 +21,8 @@ public class Excursion {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Excursion_id",nullable = false, updatable = false)
-    private Long id;
+    @Column(name = "excursion_id",nullable = false, updatable = false)
+    private Long excursion_id;
 
     /*
     Excurstion title

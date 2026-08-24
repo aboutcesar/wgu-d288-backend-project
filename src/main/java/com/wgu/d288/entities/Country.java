@@ -54,4 +54,7 @@ public class Country {
             fetch = FetchType.LAZY)
     private Set<Division> divisions;
 
+    public Long getId(){
+        return this.id;
+    }
 }

@@ -1,6 +1,8 @@
 package com.wgu.d288.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -31,29 +33,35 @@ public class Customer {
     First Name
     @String
      */
-    @Column(name="customer_first_name")
+    @NotBlank(message = "First name cannot be blank")
+    @Column(name="customer_first_name",nullable = false)
     private String firstName;
 
     /*
     Last Name
     @String
      */
-    @Column(name="customer_last_name")
+    @NotBlank(message = "Last name cannot be blank")
+    @Column(name="customer_last_name",nullable = false)
     private String lastName;
 
     /*
     Address
     @String
      */
-    @Column(name="address")
+    @NotBlank(message = "The address line cannot be blank")
+    @Column(name="address",nullable = false)
     private String address;
 
     /*
     Postal code
     @String
     This has to be a string to handle international postal codes
+    it wil have a min length of 3  the shortest zipcode in the world is 3 characters
      */
-    @Column(name="postal_code")
+    @NotBlank(message = "The postal code a required field and cannot be blank")
+    @Size(min = 3, message = "The postal code must be at least 3 characters")
+    @Column(name="postal_code",nullable = false)
     private String postal_code;
 
     /*
@@ -85,6 +93,6 @@ public class Customer {
     /*
     mapping to cart table
      */
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cart_id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Cart> carts;
 }

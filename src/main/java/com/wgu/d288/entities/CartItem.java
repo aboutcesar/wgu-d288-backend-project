@@ -16,16 +16,14 @@ This class holds all the individual items in the cart
 @Table(name="cart_items")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class CartItem {
     /*
     ID for the table
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="cart_item_id")
-    private Long id;
+    @Column(name="cart_item_id",insertable=false, updatable=false)
+    private Long cart_item_id;
 
     /*
     joins to other tables
@@ -35,12 +33,17 @@ public class CartItem {
      */
     @ManyToMany
     @JoinTable(
-            name="excursion_cartitem",
-            joinColumns = @JoinColumn(name="cart_item_id"),
-            inverseJoinColumns = @JoinColumn(name="excursion_id")
-            )
+            name = "excursion_cartitem",
+            joinColumns = @JoinColumn(name = "cart_item_id"),
+            inverseJoinColumns = @JoinColumn(name = "excursion_id")
+    )
     private Set<Excursion> excursions;
 
+    /*
+    * join to the vacation table
+     */
+    @OneToMany(mappedBy = "vacation_id")
+    private Set<Vacation> vacation;
     /*
     join to the cart table
      */

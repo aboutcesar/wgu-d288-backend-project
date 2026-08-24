@@ -23,7 +23,7 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="cart_id")
-    private Long id;
+    private Long cart_id;
 
     /*
     Strings for the table
@@ -31,7 +31,7 @@ public class Cart {
     /*
     number to track the order
      */
-    @Column(name="order_tracking number")
+    @Column(name="order_tracking_number")
     private String orderTrackingNumber;
 
     /*
@@ -40,7 +40,7 @@ public class Cart {
     /*
     price of the package
      */
-    @Column(name="order_tracking_number")
+    @Column(name="package_price")
     private BigDecimal package_price;
 
     /*
@@ -82,12 +82,18 @@ public class Cart {
     /*
     relationships to this table
      */
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "cart_item_id", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     private Set<CartItem> cartItem = new HashSet<>();
 
     public void add(CartItem cartItem){
         this.cartItem.add(cartItem);
     }
 
+    public void setOrderTrackingNumber(String orderTrackingNumber){
+        this.orderTrackingNumber = orderTrackingNumber;
+    }
 
+    public void setStatus(StatusType orderStatus){
+        this.status = orderStatus;
+    }
 }
